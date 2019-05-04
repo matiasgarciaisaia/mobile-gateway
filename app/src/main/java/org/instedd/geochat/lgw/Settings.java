@@ -59,7 +59,7 @@ public class Settings implements ISettings {
 	}
 
 	private String defaultEndpointUrl() {
-		return "http://nuntium.instedd.org/";
+		return "https://nuntium.instedd.org/";
 	}
 
 	public int storedRefreshRateInSeconds() {
@@ -121,7 +121,7 @@ public class Settings implements ISettings {
 	public NuntiumClient nuntiumClient() {
 		if (nuntiumClient == null) {
 			nuntiumClient = new NuntiumClient(context, restClient(),
-					storedEndpointBaseUrl());
+				storedEndpointUrl());
 		}
 
 		return nuntiumClient;
@@ -129,19 +129,6 @@ public class Settings implements ISettings {
 
 	private RestClient restClient() {
 		return new RestClient(context);
-	}
-
-	public String storedEndpointBaseUrl() {
-		return trimToHost(storedEndpointUrl());
-	}
-
-	private String trimToHost(String url) {
-		String[] splittedUrl = url.split("/");
-		if (splittedUrl.length >= 3) {
-			return splittedUrl[2];
-		} else {
-			return "";
-		}
 	}
 
 	public boolean areIncomplete() {
@@ -194,7 +181,7 @@ public class Settings implements ISettings {
 	}
 
 	private String endpointUrlFrom(NuntiumTicket nuntiumTicket) {
-		return "http://" + storedEndpointBaseUrl() + "/"
+		return storedEndpointUrl() + "/"
 				+ nuntiumTicket.data().get("account") + "/qst";
 	}
 

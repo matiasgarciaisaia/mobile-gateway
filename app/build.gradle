@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 'Google Inc.:Google APIs:18'
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 18
 
     defaultConfig {
         applicationId "org.instedd.geochat.lgw"
@@ -11,6 +10,11 @@ android {
 
         testApplicationId "org.instedd.geochat.lgw.test"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
+
+        repositories {
+            jcenter()
+            google()
+        }
     }
 
     buildTypes {

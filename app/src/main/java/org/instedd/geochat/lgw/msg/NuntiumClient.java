@@ -80,7 +80,7 @@ public class NuntiumClient {
 
 	private JSONArray jsonCountries() throws NuntiumClientException, WrongHostException {
 		try {
-			HttpResponse response = restClient.get("http://" + nuntiumUrl
+			HttpResponse response = restClient.get(nuntiumUrl
 					+ "/api/countries.json");
 			check(response);
 
@@ -131,8 +131,7 @@ public class NuntiumClient {
 	public NuntiumTicket requestTicketFor(String telephoneNumber)
 			throws NuntiumClientException {
 		try {
-			HttpResponse response = restClient.post("http://" + nuntiumUrl
-					+ "/tickets.json?", "address=" + telephoneNumber, null);
+			HttpResponse response = restClient.post(nuntiumUrl + "/tickets.json?", "address=" + telephoneNumber, null);
 
 			check(response);
 			return buildTicketFrom(response);
@@ -149,7 +148,7 @@ public class NuntiumClient {
 	public NuntiumTicket askForUpdateAbout(NuntiumTicket nuntiumTicket)
 			throws NuntiumClientException, WrongHostException {
 		try {
-			HttpResponse response = restClient.get("http://" + nuntiumUrl
+			HttpResponse response = restClient.get(nuntiumUrl
 					+ "/tickets/" + nuntiumTicket.code() + ".json?secret_key="
 					+ nuntiumTicket.secretKey());
 
